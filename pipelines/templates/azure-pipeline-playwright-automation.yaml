@@ -1,0 +1,65 @@
+parameters:
+  - name: environment
+    type: string
+  - name: runCommand
+    type: string
+
+stages: 
+  - stage: ${{ parameters.environment }}_Test
+    dependsOn: []
+    jobs: 
+    - job: test
+      displayName: 'Run Playwright Tests'
+
+      steps:
+      - download: none
+      - checkout: self
+      - task: NodeTool@1
+        displayName: 'Use Node'
+        inputs:
+          version: 24.x
+
+      - script: npm ci
+        displayName: "NPM Install Dependencies"
+          
+      - script: npx playwright@1.53.1 install --with-deps
+        displayName: "Playwright v1.53.1 Install"
+        
+      - script: npm i dotenv
+        displayName: "dotenv Install"
+
+      - script: |
+          set CI=true
+          ${{ parameters.runCommand }}
+        displayName: "Run Playwright Tests"
+        # continueOnError = true because if it is false, then the pipeline fails and reports are not generated.
+        # Because this is true, if this step fails, it will not show as failed but will show as a warning.
+        continueOnError: true
+
+      - bash: |
+          pwd && ls -la
+          if [ ! -d "playwright-report" ]; then
+            echo "❌ playwright-report folder not found!"
+            exit 1
+          fi
+          mkdir -p "$(Build.ArtifactStagingDirectory)/playwright-report"
+          cp -r playwright-report/* "$(Build.ArtifactStagingDirectory)/playwright-report/"
+        displayName: 'Check and copy Playwright HTML report'
+
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)/playwright-report'
+          ArtifactName: 'playwright-html-report'
+          publishLocation: 'Container'
+        displayName: 'Publish Playwright HTML report'
+
+      - task: PublishTestResults@2
+        inputs:
+          testResultsFiles: '**/test-results/*.xml'
+          testRunTitle: 'Playwright Tests'
+        condition: succeededOrFailed()
+        displayName: 'Publish test results'
+
+      - bash: |
+          echo "##vso[task.setvariable variable=BUILD_ARTIFACT_LINK]$(Build.ArtifactStagingDirectory)/playwright-report/index.html"
+        displayName: 'Set artifact link (for debugging or manual viewing)'
