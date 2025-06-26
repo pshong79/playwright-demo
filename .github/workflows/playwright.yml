@@ -19,7 +19,13 @@ jobs:
       run: npm install dotenv --no-save
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Run Playwright tests
+    - name: Run Playwright tests tagged with @smoke
+      run: npx playwright test --project=smoke-tests
+    - name: Run Playwright tests tagged with @api
+      run: npx playwright test --project=api-tests
+    - name: Run Playwright tests in end-to-end.spec.ts file
+      run: npx playwright test --project=end-to-end-tests
+    - name: Run all Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
@@ -27,4 +33,3 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
-        
