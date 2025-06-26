@@ -27,6 +27,10 @@ test.describe('saucedemo - end-to-end tests', async () => {
     await loginPage.login(USERID, PASSWORD);
   });
 
+  test.afterEach('close browser', async ({ page }) => {
+    await page.close();
+  });
+
   test('add item to cart and checkout', { tag: '@smoke' }, async () => {
     // add item to cart
     await header.assertCartItemCountIsNotVisible();
