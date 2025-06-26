@@ -1,5 +1,7 @@
 # Description
-As I continue to develop my skillset as a Quality Assurance (QA) Engineer / Software Development Engineer in Test (SDET), the intention is that this project represents my learnings and growing abilities with the Playwright automation framework.
+As I continue to develop my skillset as a Quality Assurance (QA) Engineer / Software Development Engineer in Test (SDET), the intention is that this project will represent my learnings and growing abilities with the Playwright automation framework.
+
+This project is created using Playwright and TypeScript.
 
 # Contents
 This project contains examples of:
@@ -9,6 +11,7 @@ This project contains examples of:
   * Azure DevOps
     * Note: Only the setup to successfully execute a pipeline in Azure DevOps can be viewed. The files are stored under `pipelines` under the root directory. 
   * GitHub Actions
+* Tagging tests and running tagged tests using projects
 
 # Prerequisites
 Before setting up this project, the following dependencies will need to be installed:
@@ -45,6 +48,11 @@ $ npx playwright test <path_to_test_file>
 To execute a specific test, run:
 ```
 $ npx playwright test <path_to_test_file>:<line_number_of_test>
+```
+
+To execute a specific project, run:
+```
+$ npx playwright test --project=<project_name>
 ```
 
 # Test Report

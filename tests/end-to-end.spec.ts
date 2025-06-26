@@ -27,7 +27,7 @@ test.describe('saucedemo - end-to-end tests', async () => {
     await loginPage.login(USERID, PASSWORD);
   });
 
-  test('add item to cart and checkout', async () => {
+  test('add item to cart and checkout', { tag: '@smoke' }, async () => {
     // add item to cart
     await header.assertCartItemCountIsNotVisible();
     await productsPage.addSauceLabsBoltTShirtToCart();

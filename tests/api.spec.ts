@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('GET /forecast',async ({ request }) => {
+test('GET /forecast', { tag: ['@smoke', '@api'] }, async ({ request }) => {
   // Location: Minneapolis, MN
   const GRID_ID = 'MPX';
   const GRID_X = 112;
