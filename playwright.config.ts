@@ -40,16 +40,16 @@ export default defineConfig({
     },
     {
       name: 'api-tests',
-      grep: /@api/,
+      // grep: /@api/
       // NOTE: To run all API tests, you can use the `testMatch` option to specify the file pattern.
       //       This is useful if you want to run all API tests without using tags.
       //       To run specific API tests, use the `grep` option to filter by tags.
       //       If both `grep` and `testMatch` are used, the `grep` option will take precedence.
-      testMatch: /.*\.api\.spec\.ts/,
+      testMatch: /api\.spec\.ts/,
     },
     {
       name: 'end-to-end-tests',
-      testMatch: /.*\.end-to-end\.spec\.ts/,
+      testMatch: /end-to-end\.spec\.ts/,
 
       use: {
         baseURL: 'https://www.saucedemo.com/'
