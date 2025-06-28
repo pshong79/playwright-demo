@@ -46,17 +46,33 @@ stages:
           cp -r playwright-report/* "$(Build.ArtifactStagingDirectory)/playwright-report/"
         displayName: 'Check and copy Playwright HTML report'
 
-      - task: PublishBuildArtifacts@1
+      - task: ArchiveFiles@2
+        displayName: 'Add playwright-report to Archive'
         inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)/playwright-report'
-          ArtifactName: 'playwright-html-report'
-          publishLocation: 'Container'
-        displayName: 'Publish Playwright HTML report'
+          rootFolderOrFile: '$(Pipeline.Workspace)/s/playwright-report/'
+          archiveFile: '$(Agent.TempDirectory)/$(Build.BuildId)_$(System.StageName)_$(System.JobAttempt).zip'
+
+      - task: ArchiveFiles@2
+        displayName: 'Add test-results to Archive'
+        inputs:
+          rootFolderOrFile: '$(Pipeline.Workspace)/s/test-results/'
+          archiveFile: '$(Agent.TempDirectory)/$(Build.BuildId)_$(System.StageName)_$(System.JobAttempt).zip'
+          replaceExistingArchive: false
+
+      - task: PublishPipelineArtifact@1
+        displayName: 'Publish Pipeline Artifacts'
+        inputs:
+          targetPath: '$(Agent.TempDirectory)/$(Build.BuildId)_$(System.StageName)_$(System.JobAttempt).zip'
+          artifact: $(System.StageName)_$(System.JobAttempt)_pipeline-artifacts
+          publishLocation: 'pipeline'
+        condition: succeededOrFailed()
 
       - task: PublishTestResults@2
         inputs:
           testResultsFiles: '**/test-results/*.xml'
           testRunTitle: 'Playwright Tests'
+          failTaskOnFailedTests: true
+          mergeTestResults: true
         condition: succeededOrFailed()
         displayName: 'Publish test results'
 
