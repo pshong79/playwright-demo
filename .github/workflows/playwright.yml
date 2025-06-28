@@ -20,9 +20,13 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests tagged with @smoke
-      run: npx playwright test --project=smoke-tests
+      run: npx playwright test --grep="@smoke"
+      # NOTE: The below comment is used if projects are defined in playwright.config.ts
+      # run: npx playwright test --project=smoke-tests
     - name: Run Playwright tests tagged with @api
-      run: npx playwright test --project=api-tests
+      run: npx playwright test --grep="@api"
+      # NOTE: The below comment is used if projects are defined in playwright.config.ts
+      # run: npx playwright test --project=api-tests
     - name: Run Playwright tests in end-to-end.spec.ts file
       run: npx playwright test --project=end-to-end-tests
     - name: Run all Playwright tests
