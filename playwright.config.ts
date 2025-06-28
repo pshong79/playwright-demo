@@ -33,27 +33,31 @@ export default defineConfig({
     video: 'retain-on-failure'
   },
 
-  projects: [
-    {
-      name: 'smoke-tests',
-      grep: /@smoke/
-    },
-    {
-      name: 'api-tests',
-      // grep: /@api/
-      // NOTE: To run all API tests, you can use the `testMatch` option to specify the file pattern.
-      //       This is useful if you want to run all API tests without using tags.
-      //       To run specific API tests, use the `grep` option to filter by tags.
-      //       If both `grep` and `testMatch` are used, the `grep` option will take precedence.
-      testMatch: /api\.spec\.ts/,
-    },
-    {
-      name: 'end-to-end-tests',
-      testMatch: /end-to-end\.spec\.ts/,
+  // NOTE: To run subsets of tests, using projects is one option. However, the better option maybe to grep.
+  //       Grep allows you to filter tests by tags, which can be more flexible than projects.
+  //       Projects can be useful if you want to run different configurations of tests, such as
+  //       running tests on different browsers or devices, or running different sets of tests.
+  // projects: [
+  //   {
+  //     name: 'smoke-tests',
+  //     grep: /@smoke/
+  //   },
+  //   {
+  //     name: 'api-tests',
+  //     // grep: /@api/
+  //     // NOTE: To run all API tests, you can use the `testMatch` option to specify the file pattern.
+  //     //       This is useful if you want to run all API tests without using tags.
+  //     //       To run specific API tests, use the `grep` option to filter by tags.
+  //     //       If both `grep` and `testMatch` are used, the `grep` option will take precedence.
+  //     testMatch: /api\.spec\.ts/,
+  //   },
+  //   {
+  //     name: 'end-to-end-tests',
+  //     testMatch: /end-to-end\.spec\.ts/,
 
-      use: {
-        baseURL: 'https://www.saucedemo.com/'
-      }
-    }
-  ]
+  //     use: {
+  //       baseURL: 'https://www.saucedemo.com/'
+  //     }
+  //   }
+  // ]
 });
