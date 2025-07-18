@@ -21,11 +21,6 @@ export class SharedObjects {
     await button.click();
   }
 
-  async assertCartItem(productName: string): Promise<void> {
-    const cartItem = this.page.getByTestId('inventory-item-name').filter({ hasText: productName });
-    await expect(cartItem).toBeVisible();
-  }
-
   async assertHeadingIsVisible(headerText: string): Promise<void> {
     const header = this.page.getByRole('heading', { name: headerText });
     await expect(header).toBeVisible();

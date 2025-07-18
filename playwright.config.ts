@@ -19,7 +19,6 @@ export default defineConfig({
     testIdAttribute: 'data-test',
 
     ...devices['Desktop Chrome'],
-    baseURL: 'https://www.saucedemo.com/',
 
     // NOTE: Header values for API tests can be set here or in the individual test files.
     //       Setting them here would apply them globally to all API tests and could be 
@@ -33,19 +32,20 @@ export default defineConfig({
     video: 'retain-on-failure'
   },
 
+  // NOTE: The `projects` configuration allows you to run different sets of tests with specific configurations.
+  //       If 'npx playwright test' is run without any arguments, it will run all projects and ONLY tests in those projects.
+  //       To run all tests using projects, ensure all the tests are included in the `projects` array or create a separate 
+  //       project that includes all tests.
   projects: [
     {
-      name: 'smoke-tests',
-      grep: /@smoke/
-    },
-    {
       name: 'api-tests',
-      grep: /@api/
       // NOTE: To run all API tests, you can use the `testMatch` option to specify the file pattern.
       //       This is useful if you want to run all API tests without using tags.
       //       To run specific API tests, use the `grep` option to filter by tags.
       //       If both `grep` and `testMatch` are used, the `grep` option will take precedence.
-      // testMatch: /api\.spec\.ts/,
+      testMatch: /api\.spec\.ts/
+      // grep: /@api/
+      
     },
     {
       name: 'end-to-end-tests',
@@ -54,6 +54,17 @@ export default defineConfig({
       use: {
         baseURL: 'https://www.saucedemo.com/'
       }
+    },
+    {
+      name: 'fakerjs-tests',
+      testMatch: /fakerjs\.spec\.ts/,
+      use: {
+        baseURL: 'https://www.automationexercise.com/'
+      }
     }
+    // {
+      // name: 'sm÷oke-tests',
+      // grep: /@smoke/
+    // },
   ]
 });
