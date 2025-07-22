@@ -11,5 +11,4 @@ export class Header {
     const link = this.page.getByRole('link', { name: menuText });
     await link.click();
   }
-
 }

@@ -3,12 +3,10 @@ import { faker } from '@faker-js/faker';
 import { returnDateArray } from '../helpers/test_helper';
 import { SharedObjects } from '../support/shared/shared-objects';
 import { Header } from '../support/automation-exercise/header';
-import { LoginPage } from '../support/automation-exercise/login-page';
 
 test.describe('automation exercise - fakerjs tests', async () => {
   let sharedObjects: SharedObjects,
-      header: Header,
-      loginPage: LoginPage;
+      header: Header
 
   const firstName = faker.person.firstName();
   const lastName = faker.person.lastName();
@@ -31,20 +29,19 @@ test.describe('automation exercise - fakerjs tests', async () => {
   // const state = faker.location.state();
   // const zipCode = faker.location.zipCode();
   // const country = faker.location.country();
-  const country = 'United States'; // Hardcoded for consistency in tests
+  // const country = 'United States'; // Hardcoded for consistency in tests
   const phoneNumber = faker.phone.number();
 
   test.beforeEach('load site', async ({ page }) => {
     sharedObjects = new SharedObjects(page);
     header = new Header(page);
-    loginPage = new LoginPage(page);
 
     await sharedObjects.goToPage('/');
   });
 
-  // test.afterEach('close browser', async ({ page }) => {
-  //   await page.close();
-  // });
+  test.afterEach('close browser', async ({ page }) => {
+    await page.close();
+  });
 
   test('register account', async () => {
     console.log('register account test');
@@ -103,11 +100,5 @@ test.describe('automation exercise - fakerjs tests', async () => {
 
     await sharedObjects.assertTextIsVisible(`Logged in as ${firstName} ${lastName}`);
     await sharedObjects.takeFullPageScreenshot('logged-in');
-  })
-
-  test.skip('abc', async () => {
-    console.log('First Name:', firstName);
-    console.log('Last Name:', lastName);
-    console.log('Email:', emailAddress)
   });
 });
