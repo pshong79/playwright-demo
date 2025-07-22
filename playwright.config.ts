@@ -61,10 +61,10 @@ export default defineConfig({
       use: {
         baseURL: 'https://www.automationexercise.com/'
       }
-    }
-    // {
-      // name: 'sm÷oke-tests',
-      // grep: /@smoke/
-    // },
+    },
+    {
+      name: 'smoke-tests',
+      grep: /@smoke/
+    },
   ]
 });
