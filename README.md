@@ -6,6 +6,7 @@ This project is created using Playwright and TypeScript.
 # Contents
 This project contains examples of:
 * End-to-end UI testing
+* Tests using `faker-js` to generate test data
 * API testing
 * Successfully integrating in to CI/CD pipelines using:
   * Azure DevOps
@@ -22,13 +23,22 @@ Before setting up this project, the following dependencies will need to be insta
 To set up this project:
 1. Clone the repository.
 2. `cd` into the directory.
-3. Install all the npm dependencies:
+3. Install npm libraries:
+   * `dotenv`:
+     ```
+     $ npm i dotenv
+     ```
+   * `faker-js`:
+     ```
+     npm i @fakerjs/faker`
+     ```
+4. Install all the npm dependencies:
    ```
    $ npm install
    ```
    This will install all the required dependencies that are present in the `package.json` file.
 
-4. Install Playwright using the following command:
+5. Install Playwright using the following command:
    ```
    $ npx playwright install
    ```
