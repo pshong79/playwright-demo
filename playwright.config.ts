@@ -62,9 +62,9 @@ export default defineConfig({
         baseURL: 'https://www.automationexercise.com/'
       }
     },
-    {
-      name: 'smoke-tests',
-      grep: /@smoke/
-    },
+    // {
+    //   name: 'smoke-tests',
+    //   grep: /@smoke/
+    // },
   ]
 });

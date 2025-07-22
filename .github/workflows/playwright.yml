@@ -29,12 +29,12 @@ jobs:
       run: npx playwright test --project=end-to-end-tests
     - name: Run Playwright tests in fakerjs.spec.ts file
       run: npx playwright test --project=fakerjs-tests
-    - name: Run Playwright tests tagged with @smoke
+    # - name: Run Playwright tests tagged with @smoke
       # NOTE: This is a workaround for the issue with Playwright's --grep option.
       # For some reason, it doesn't work as expected in GitHub Actions.
       # Instead, we use the --project option to run tests in the 'smoke-tests
       # run: npx playwright test --grep="@smoke"
-      run: npx playwright test --project=smoke-tests
+    # run: npx playwright test --project=smoke-tests
     - name: Run all Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
