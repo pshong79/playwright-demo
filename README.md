@@ -30,7 +30,7 @@ To set up this project:
      ```
    * `faker-js`:
      ```
-     npm i @fakerjs/faker`
+     npm i @fakerjs/faker
      ```
 4. Install all the npm dependencies:
    ```
