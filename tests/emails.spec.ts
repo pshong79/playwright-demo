@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test';
-import { checkInbox, parseHtmlFromEmail } from 'gmail-getter';
-import createAccessToken from '../helpers/gmail_helper';
+import { checkInbox, fetchEmailsList, fetchEmailById, parseHtmlFromEmail } from 'gmail-getter';
+import getGmailAccessToken from '../helpers/gmail_helper';
 
 test.describe('email', async () => {
   test.describe('gmail', async () => {
-    let accessToken: string | undefined,
+    let accessToken: string,
         fromEmail: string,
         subject: string,
         queryString: string;
 
     test.beforeAll(async () => {
-      accessToken = await createAccessToken();
+      accessToken = await getGmailAccessToken();
     });
 
     test('check inbox - find by query string', async ({ page }) => {
@@ -31,7 +31,54 @@ test.describe('email', async () => {
       const email = await checkInbox({ token: accessToken!, query: queryString });
       const html = parseHtmlFromEmail(email!);
       await page.setContent(html);
+
+      // TODO: Add assertions to verify the email content.
+      // For example, check if the email contains a specific text.
     });
+
+    test('get email list', async () => {
+      console.log('get email list test');
+
+      const emailList = await fetchEmailsList({ token: accessToken });
+      expect(emailList).toBeDefined();
+      expect(emailList.length).toBeGreaterThan(0);
+
+      /* Returns:
+      Email list: [
+        { id: '192e08ab5bbf519a', threadId: '192e08ab5bbf519a' },
+        { id: '18f53be23e78c08b', threadId: '18f53be23e78c08b' }
+      ]
+      */
+
+      // for (const email of emailList) {
+      //   expect(email.id).toBeDefined();
+      //   expect(email.threadId).toBeDefined();
+      //   console.log(`Email ID: ${email.id}, Snippet: ${email.threadId}`);
+      // }
+      /* Returns:
+      Email ID: 192e08ab5bbf519a, Snippet: 192e08ab5bbf519a
+      Email ID: 18f53be23e78c08b, Snippet: 18f53be23e78c08b
+      */
+    });
+
+    test('get email by id', async () => {
+      console.log('get email by id test');
+
+      const emailList = await fetchEmailsList({ token: accessToken });
+      expect(emailList).toBeDefined();
+      expect(emailList.length).toBeGreaterThan(0);
+
+      const emailId = emailList[0].id;
+
+      const email = await fetchEmailById(emailId, accessToken);
+      expect(email).toBeDefined();
+      expect(email.id).toBe(emailId);
+    });
+
+    test('delete email by id', async () => {
+      console.log('delete email by id test');
+      // TODO: Create a test to delete email by id.
+      //       This includes creating an email, fetching its ID, and then deleting it.
   });
 });
 
@@ -39,30 +86,6 @@ test.describe('email', async () => {
 
 // Everything below will eventually be deleted.
 /*
-
-    test('get email based on query string', async ({ page }) => {
-      // Google documentation on refining search results:
-      // https://support.google.com/mail/answer/7190#
-      let queryString = 'Automation Test Email';
-      let messageId, parsedMessageId, messageBody, parsedEmail;
-
-      email = new Email();
-
-      messageId = await email.getMessageId(accessToken, queryString);
-      parsedMessageId = JSON.parse(messageId);
-
-      messageBody = await email.getEmailMessage(accessToken, parsedMessageId);
-
-      console.log('messageId = ' + messageId);
-      console.log('parsedMessageId ' + parsedMessageId);
-
-      parsedEmail = await email.parseEmailIntoHtml(messageBody);
-      await page.setContent(parsedEmail);
-
-      // await email.assertOrderNumber('Order Number: 40023032');
-      await expect(page.locator('div.WordSection1')).toContainText('Order Number: 24680');
-    })
-
     test('delete based on queryString', async ({ request }) => {
       email = new Email();
 
