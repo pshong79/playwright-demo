@@ -48,6 +48,10 @@ export default defineConfig({
       
     },
     {
+      name: 'email-tests',
+      testMatch: /emails\.spec\.ts/
+    },
+    {
       name: 'end-to-end-tests',
       testMatch: /end-to-end\.spec\.ts/,
 

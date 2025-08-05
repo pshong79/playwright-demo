@@ -5,6 +5,7 @@ node_modules/
 /playwright/.cache/
 /screenshots/
 
+credentials.json
 .DS_Store
 .history
 .todo

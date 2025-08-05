@@ -30,7 +30,7 @@ To set up this project:
      ```
    * `faker-js`:
      ```
-     npm i @fakerjs/faker`
+     npm i @fakerjs/faker
      ```
 4. Install all the npm dependencies:
    ```
@@ -64,6 +64,12 @@ To execute a specific project, run:
 ```
 $ npx playwright test --project=<project_name>
 ```
+
+## Email tests
+### Gmail
+All of these tests are marked to `skip` because the credentials are not setup. To set up proper credentials, follow the steps [here](https://hackernoon.com/how-to-read-gmail-emails-with-playwright) to obtain a `credentials.json` file and to use that to create a `client_id`, `client_secret`, and a `refresh_token`.
+
+These values will need to be inserted into the `.env` file.
 
 # Test Report
 The test execution report can be viewed with:
