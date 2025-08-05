@@ -13,7 +13,7 @@ test.describe('email', async () => {
       accessToken = await getGmailAccessToken();
     });
 
-    test('check inbox - find by query string', async ({ page }) => {
+    test.skip('check inbox - find by query string', async ({ page }) => {
       console.log('gmail - check inbox test');
 
       // NOTE: I am unsure how fromEmail is used in the queryString.
@@ -36,7 +36,7 @@ test.describe('email', async () => {
       // For example, check if the email contains a specific text.
     });
 
-    test('get email list', async () => {
+    test.skip('get email list', async () => {
       console.log('get email list test');
 
       const emailList = await fetchEmailsList({ token: accessToken });
@@ -61,7 +61,7 @@ test.describe('email', async () => {
       */
     });
 
-    test('get email by id', async () => {
+    test.skip('get email by id', async () => {
       console.log('get email by id test');
 
       const emailList = await fetchEmailsList({ token: accessToken });
@@ -75,7 +75,7 @@ test.describe('email', async () => {
       expect(email.id).toBe(emailId);
     });
 
-    test('delete email by id', async () => {
+    test.skip('delete email by id', async () => {
       console.log('delete email by id test');
       // TODO: Create a test to delete email by id.
       //       This includes creating an email, fetching its ID, and then deleting it.

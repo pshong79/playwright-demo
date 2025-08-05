@@ -67,7 +67,7 @@ $ npx playwright test --project=<project_name>
 
 ## Email tests
 ### Gmail
-To run the tests for Gmail, it will require some setup. Follow the steps [here](https://hackernoon.com/how-to-read-gmail-emails-with-playwright) to obtain a `credentials.json` file and to use that to create a `client_id`, `client_secret`, and a `refresh_token`.
+All of these tests are marked to `skip` because the credentials are not setup. To set up proper credentials, follow the steps [here](https://hackernoon.com/how-to-read-gmail-emails-with-playwright) to obtain a `credentials.json` file and to use that to create a `client_id`, `client_secret`, and a `refresh_token`.
 
 These values will need to be inserted into the `.env` file.
 
