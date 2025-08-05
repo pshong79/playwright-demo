@@ -79,6 +79,7 @@ test.describe('email', async () => {
       console.log('delete email by id test');
       // TODO: Create a test to delete email by id.
       //       This includes creating an email, fetching its ID, and then deleting it.
+    });
   });
 });
 
