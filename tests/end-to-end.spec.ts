@@ -13,7 +13,7 @@ test.describe('saucedemo - end-to-end tests', async () => {
       productsPage: ProductsPage;
 
   test.beforeEach('login', async ({ page }) => {
-    const USERID = process.env.USER_ID;
+    const USERID = process.env.STANDARD_USER_ID;
     const PASSWORD = process.env.PASSWORD;
 
     sharedObjects = new SharedObjects(page);

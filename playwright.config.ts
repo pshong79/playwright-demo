@@ -37,6 +37,10 @@ export default defineConfig({
   //       To run all tests using projects, ensure all the tests are included in the `projects` array or create a separate 
   //       project that includes all tests.
   projects: [
+    // {
+    //   name: 'all-tests',
+    //   testMatch: /.*/
+    // },
     {
       name: 'api-tests',
       // NOTE: To run all API tests, you can use the `testMatch` option to specify the file pattern.
@@ -70,5 +74,13 @@ export default defineConfig({
     //   name: 'smoke-tests',
     //   grep: /@smoke/
     // },
+    {
+      name: 'visual-tests',
+      testMatch: /visual\.spec\.ts/,
+
+      use: {
+        baseURL: 'https://www.saucedemo.com/'
+      }
+    }
   ]
 });

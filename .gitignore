@@ -4,6 +4,7 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /screenshots/
+/tests/visual.spec.ts-snapshots/
 
 credentials.json
 .DS_Store

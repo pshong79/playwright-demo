@@ -8,6 +8,8 @@ This project contains examples of:
 * End-to-end UI testing
 * Tests using `faker-js` to generate test data
 * API testing
+* Tests checking email using Gmail
+* Visual testing
 * Successfully integrating in to CI/CD pipelines using:
   * Azure DevOps
     * Note: Only the setup to successfully execute a pipeline in Azure DevOps can be viewed. The files are stored under `pipelines` under the root directory. 
@@ -70,6 +72,9 @@ $ npx playwright test --project=<project_name>
 All of these tests are marked to `skip` because the credentials are not setup. To set up proper credentials, follow the steps [here](https://hackernoon.com/how-to-read-gmail-emails-with-playwright) to obtain a `credentials.json` file and to use that to create a `client_id`, `client_secret`, and a `refresh_token`.
 
 These values will need to be inserted into the `.env` file.
+
+## Visual tests
+The visual tests are also marked to `skip` because they are designed to fail. The initial run needs to be executed using `standard_user` so that the baseline screenshot can be captured. All subsequent runs are to be executed using `visual_user`. Doing so will cause the visual comparison to fail, thus, causing the tests to fail.
 
 # Test Report
 The test execution report can be viewed with:
