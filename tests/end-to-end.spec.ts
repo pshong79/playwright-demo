@@ -5,7 +5,7 @@ import { LoginPage } from '../support/saucedemo/login-page';
 import { CartPage } from '../support/saucedemo/cart-page';
 import { ProductsPage } from '../support/saucedemo/products-page';
 
-test.describe('saucedemo - end-to-end tests', async () => {
+test.describe('saucedemo - end-to-end tests', () => {
   let sharedObjects: SharedObjects,
       header: Header,
       loginPage: LoginPage,
