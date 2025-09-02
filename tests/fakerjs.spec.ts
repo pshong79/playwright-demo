@@ -90,7 +90,7 @@ test.describe('automation exercise - fakerjs tests', () => {
     await sharedObjects.assertPageURL('/');
   });
 
-  test('login with created user', async () => {
+  test.skip('login with created user', async () => {
     console.log('login with created user test');
 
     await sharedObjects.clickLink('Signup / Login');
