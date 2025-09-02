@@ -19,6 +19,8 @@ jobs:
       run: npm install dotenv --no-save
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Run ESLint
+      run: npx eslint .
     - name: Run Playwright tests tagged with @api
       # NOTE: This is a workaround for the issue with Playwright's --grep option.
       # For some reason, it doesn't work as expected in GitHub Actions.

@@ -11,18 +11,18 @@ test('GET /forecast', { tag: ['@smoke', '@api'] }, async ({ request }) => {
     params: {}
   });
 
-  await expect(response.ok()).toBeTruthy();
-  await expect(response.status()).toBe(200);
+  expect(response.ok()).toBeTruthy();
+  expect(response.status()).toBe(200);
 });
 
 test('GET /api/v2/facts/505ffc40da0c14f4023aefedcd837131', async ({ request }) => {
   console.log('Running GET /api/v2/facts/505ffc40da0c14f4023aefedcd837131 test');
   const response = await request.get('https://uselessfacts.jsph.pl/api/v2/facts/505ffc40da0c14f4023aefedcd837131');
 
-  await expect(response.ok()).toBeTruthy();
-  await expect(response.status()).toBe(200);
+  expect(response.ok()).toBeTruthy();
+  expect(response.status()).toBe(200);
   const data = await response.json();
-  await expect(data).toEqual({
+  expect(data).toEqual({
     id: '505ffc40da0c14f4023aefedcd837131',
     text: 'Weatherman Willard Scott was the first original Ronald McDonald.',
     source: 'djtech.net',
@@ -47,11 +47,11 @@ test('POST /users', { tag: '@api' }, async ({ request }) => {
     }
   });
   
-  await expect(response.ok()).toBeTruthy();
-  await expect(response.status()).toBe(201); 
+  expect(response.ok()).toBeTruthy();
+  expect(response.status()).toBe(201); 
 
   const data = await response.json();
-  await expect(data).toEqual({
+  expect(data).toEqual({
     id: expect.any(String),
     name: 'Test User',
     email: 'demo.user@test.com',

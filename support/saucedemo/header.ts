@@ -14,7 +14,7 @@ export class Header {
   }
 
   async assertCartItemCountIsNotVisible(): Promise<void> {
-    await expect(this.page.getByTestId('shopping-cart-badge')).not.toBeVisible();
+    await expect(this.page.getByTestId('shopping-cart-badge')).toBeHidden();
   }
   
   async assertCartItemCount(expectedCount: string): Promise<void> {

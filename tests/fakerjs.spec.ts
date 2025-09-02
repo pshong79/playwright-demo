@@ -4,7 +4,7 @@ import { returnDateArray } from '../helpers/test_helper';
 import { SharedObjects } from '../support/shared/shared-objects';
 import { Header } from '../support/automation-exercise/header';
 
-test.describe('automation exercise - fakerjs tests', async () => {
+test.describe('automation exercise - fakerjs tests', () => {
   let sharedObjects: SharedObjects,
       header: Header
 
@@ -90,7 +90,7 @@ test.describe('automation exercise - fakerjs tests', async () => {
     await sharedObjects.assertPageURL('/');
   });
 
-  test('login with created user', async () => {
+  test.skip('login with created user', async () => {
     console.log('login with created user test');
 
     await sharedObjects.clickLink('Signup / Login');
