@@ -76,6 +76,20 @@ These values will need to be inserted into the `.env` file.
 ## Visual tests
 The visual tests are also marked to `skip` because they are designed to fail. The initial run needs to be executed using `standard_user` so that the baseline screenshot can be captured. All subsequent runs are to be executed using `visual_user`. Doing so will cause the visual comparison to fail, thus, causing the tests to fail.
 
+# ESLint
+[ESLint](https://eslint.org/) is used to analyze the code to find any a problems. ESLint can be installed with:
+```
+$ npm init @eslint/config@latest --save-dev
+```
+Make the appropriate selections, when prompted, and then install all the dependences with:
+```
+$ npm install @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-playwright --save-dev
+```
+
+The configurations for the linter can be updated through the `.eslint.config.mjs` file.
+
+_TODO_: Trying to understand what impact `.eslint.config.mts` has. It does not seem to have an effect on anything and ESLint utilizes the `.eslint.config.mjs` file. 
+
 # Test Report
 The test execution report can be viewed with:
 ```
