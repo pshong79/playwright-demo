@@ -15,6 +15,7 @@ This project contains examples of:
     * Note: Only the setup to successfully execute a pipeline in Azure DevOps can be viewed. The files are stored under `pipelines` under the root directory. 
   * GitHub Actions
 * Tagging tests and running tagged tests using projects
+* Adding and configuring a linter using [ESLint](https://www.eslint.org)
 
 # Prerequisites
 Before setting up this project, the following dependencies will need to be installed:
