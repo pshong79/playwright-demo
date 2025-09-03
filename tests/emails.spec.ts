@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 import { checkInbox, fetchEmailsList, fetchEmailById, parseHtmlFromEmail } from 'gmail-getter';
 import getGmailAccessToken from '../helpers/gmail_helper';
 
-test.describe('email', () => {
-  test.describe('gmail', () => {
+test.describe('email', async () => {
+  test.describe('gmail', async () => {
     let accessToken: string,
         fromEmail: string,
         // subject: string,

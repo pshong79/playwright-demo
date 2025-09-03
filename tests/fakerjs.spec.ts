@@ -4,7 +4,7 @@ import { returnDateArray } from '../helpers/test_helper';
 import { SharedObjects } from '../support/shared/shared-objects';
 import { Header } from '../support/automation-exercise/header';
 
-test.describe('automation exercise - fakerjs tests', () => {
+test.describe('automation exercise - fakerjs tests', async () => {
   let sharedObjects: SharedObjects,
       header: Header
 

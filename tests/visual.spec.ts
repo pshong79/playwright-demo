@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { SharedObjects } from '../support/shared/shared-objects';
 import { LoginPage } from '../support/saucedemo/login-page';
 
-test.describe('saucedemo - visual tests', () => {
+test.describe('saucedemo - visual tests', async () => {
   let sharedObjects: SharedObjects,
       loginPage: LoginPage;
   
