@@ -81,14 +81,42 @@ The visual tests are also marked to `skip` because they are designed to fail. Th
 ```
 $ npm init @eslint/config@latest --save-dev
 ```
-Make the appropriate selections, when prompted, and then install all the dependences with:
+
+Make the appropriate selections as shown below, when prompted (The `eslint` version may differ):
+```
+$ npm init @eslint/config@latest --save-dev
+Need to install the following packages:
+@eslint/create-config@1.10.0
+Ok to proceed? (y)
+
+
+> demo@1.0.0 npx
+> create-config
+
+@eslint/create-config: v1.10.0
+
+√ What do you want to lint? · javascript
+√ How would you like to use ESLint? · problems
+√ What type of modules does your project use? · esm
+√ Which framework does your project use? · none
+√ Does your project use TypeScript? · No / Yes
+√ Where does your code run? · browser
+√ Which language do you want your configuration file be written in? · ts
+Jiti is required for Node.js <24.3.0 to read TypeScript configuration files.
+√ Would you like to add Jiti as a devDependency? · No / Yes
+The config that you've selected requires the following dependencies:
+
+eslint, @eslint/js, globals, typescript-eslint
+√ Would you like to install them now? · No / Yes
+√ Which package manager do you want to use? · npm
+```
+
+ Install all the dependences with:
 ```
 $ npm install @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-playwright --save-dev
 ```
 
-The configurations for the linter can be updated through the `.eslint.config.mjs` file.
-
-_TODO_: Trying to understand what impact `.eslint.config.mts` has. It does not seem to have an effect on anything and ESLint utilizes the `.eslint.config.mjs` file. 
+The configurations for the linter can be updated through the `.eslint.config.mts` file.
 
 # Test Report
 The test execution report can be viewed with:
