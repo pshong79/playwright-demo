@@ -8,6 +8,7 @@ This project contains examples of:
 * End-to-end UI testing
 * Tests using `faker-js` to generate test data
 * API testing
+  * Schema validation with [zod](https://zod.dev/)
 * Tests checking email using Gmail
 * Visual testing
 * Successfully integrating in to CI/CD pipelines using:
@@ -34,6 +35,10 @@ To set up this project:
    * `faker-js`:
      ```
      npm i @fakerjs/faker
+     ```
+   * `zod`:
+     ```
+     npm install zod
      ```
 4. Install all the npm dependencies:
    ```

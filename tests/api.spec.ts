@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { z } from 'zod';
 
 test('GET /forecast', { tag: ['@smoke', '@api'] }, async ({ request }) => {
   console.log('Running GET /forecast test');
@@ -58,3 +59,25 @@ test('POST /users', { tag: '@api' }, async ({ request }) => {
     createdAt: expect.any(String)
   });
 });
+
+test.describe('zod schema validation example', async () => {
+  const responseSchema = z.object({
+    id: z.string(),
+    text: z.string(),
+    source: z.string(),
+    source_url: z.url(),
+    language: z.string(),
+    permalink: z.url()
+  });
+
+  test('GET', async ({ request }) => {
+    console.log('Running GET /api/v2/facts/505ffc40da0c14f4023aefedcd837131 test');
+    const response = await request.get('https://uselessfacts.jsph.pl/api/v2/facts/505ffc40da0c14f4023aefedcd837131');
+
+    expect(response.ok()).toBeTruthy();
+    expect(response.status()).toBe(200);
+    const data = await response.json();
+    expect(() => responseSchema.parse(data)).not.toThrow();
+  });
+});
+
