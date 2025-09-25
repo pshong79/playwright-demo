@@ -70,8 +70,49 @@ test.describe('zod schema validation example', async () => {
     permalink: z.url()
   });
 
+  const franchiseTeamTotalsSchema = z.object({
+    id: z.number(),
+    activeFranchise: z.number(),
+    activeTeam: z.boolean(),
+    cups: z.number().nullable(),
+    firstSeasonId: z.number(),
+    franchiseId: z.number(),
+    gameTypeId: z.number(),
+    gameWinPctg: z.number(),
+    gamesPlayed: z.number(),
+    goalsAgainst: z.number(),
+    goalsFor: z.number(),
+    homeLosses: z.number(),
+    homeOvertimeLosses: z.number(),
+    homeTies: z.number().nullable(),
+    homeWins: z.number(),
+    lastSeasonId: z.number().nullable(),
+    losses: z.number(),
+    overtimeLosses: z.number(),
+    penaltyMinutes: z.number(),
+    playoffSeasons: z.number(),
+    pointPctg: z.number(),
+    points: z.number(),
+    roadLosses: z.number(),
+    roadOvertimeLosses: z.number(),
+    roadTies: z.number().nullable(),
+    roadWins: z.number(),
+    seriesLosses: z.number(),
+    seriesPlayed: z.number(),
+    seriesWinPctg: z.number(),
+    seriesWins: z.number(),
+    shootoutLosses: z.number(),
+    shootoutWins: z.number(),
+    shutouts: z.number(),
+    teamId: z.number(),
+    teamName: z.string(),
+    ties: z.number().nullable(),
+    triCode: z.string(),
+    wins: z.number()
+  });
+
   test('GET', async ({ request }) => {
-    console.log('Running GET /api/v2/facts/505ffc40da0c14f4023aefedcd837131 test');
+    console.log('Running GET test');
     const response = await request.get('https://uselessfacts.jsph.pl/api/v2/facts/505ffc40da0c14f4023aefedcd837131');
 
     expect(response.ok()).toBeTruthy();
@@ -79,5 +120,16 @@ test.describe('zod schema validation example', async () => {
     const data = await response.json();
     expect(() => responseSchema.parse(data)).not.toThrow();
   });
+
+  // https://gitlab.com/dword4/nhlapi/-/blob/master/records-api.md
+  test('GET /franchise-team-totals', async ({ request }) => {
+    console.log('Running GET /franchise-team-totals test');
+    const response = await request.get('https://records.nhl.com/site/api/franchise-team-totals?cayenneExp=franchiseId=18');
+
+    expect(response.ok()).toBeTruthy();
+    expect(response.status()).toBe(200);
+    const data = await response.json();
+    expect(() => z.array(franchiseTeamTotalsSchema).parse(data.data)).not.toThrow();
+  })
 });
 
