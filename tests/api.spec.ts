@@ -22,6 +22,7 @@ test('GET /api/v2/facts/505ffc40da0c14f4023aefedcd837131', async ({ request }) =
 
   expect(response.ok()).toBeTruthy();
   expect(response.status()).toBe(200);
+  
   const data = await response.json();
   expect(data).toEqual({
     id: '505ffc40da0c14f4023aefedcd837131',
@@ -33,7 +34,8 @@ test('GET /api/v2/facts/505ffc40da0c14f4023aefedcd837131', async ({ request }) =
   });
 });
 
-test('POST /users', { tag: '@api' }, async ({ request }) => {
+// FIXME: This test is currently skipped because the x-api-key header value returns a 401 Unauthorized error.
+test.skip('POST /users', { tag: '@api' }, async ({ request }) => {
   console.log('Running POST /users test');
   const response = await request.post('https://reqres.in/api/users', {
     // NOTE: The header values can be set globally in playwright.config.ts or here, within the individual test.
@@ -47,7 +49,7 @@ test('POST /users', { tag: '@api' }, async ({ request }) => {
       email: 'demo.user@test.com'
     }
   });
-  
+
   expect(response.ok()).toBeTruthy();
   expect(response.status()).toBe(201); 
 
@@ -58,6 +60,9 @@ test('POST /users', { tag: '@api' }, async ({ request }) => {
     email: 'demo.user@test.com',
     createdAt: expect.any(String)
   });
+
+  expect(data.name).toBe('Test User');
+  expect(data.email).toBe('demo.user@test.com');
 });
 
 test.describe('zod schema validation example', async () => {
@@ -117,6 +122,7 @@ test.describe('zod schema validation example', async () => {
 
     expect(response.ok()).toBeTruthy();
     expect(response.status()).toBe(200);
+
     const data = await response.json();
     expect(() => responseSchema.parse(data)).not.toThrow();
   });
@@ -128,8 +134,19 @@ test.describe('zod schema validation example', async () => {
 
     expect(response.ok()).toBeTruthy();
     expect(response.status()).toBe(200);
+
     const data = await response.json();
     expect(() => z.array(franchiseTeamTotalsSchema).parse(data.data)).not.toThrow();
   })
+
+  test('GET /name/{name}', async ({ request }) => {
+    console.log('Running GET /name/{name} test');
+    const COUNTRY_NAME = 'United States of America';
+
+    const response = await request.get(`https://restcountries.com/v3.1/name/${COUNTRY_NAME}`);
+
+    expect(response.ok()).toBeTruthy();
+    expect(response.status()).toBe(200);
+  });
 });
 

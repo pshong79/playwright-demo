@@ -12,7 +12,8 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: [
     ['html', { outputFolder: 'playwright-report', open: 'never' }],
-    ['junit', { outputFile: 'test-results/results.xml' }]
+    ['junit', { outputFile: 'test-results/results.xml' }],
+    // ['@artilleryio/playwright-reporter', { output: 'test-results/artillery-report.json' }]
   ],
   use: {
     // sets the custom data attribute for test elements

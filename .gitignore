@@ -5,6 +5,8 @@ node_modules/
 /playwright/.cache/
 /screenshots/
 /tests/visual.spec.ts-snapshots/
+/tests/dist/
+dist/
 
 credentials.json
 .DS_Store
