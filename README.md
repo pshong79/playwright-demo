@@ -11,6 +11,7 @@ This project contains examples of:
   * Schema validation with [zod](https://zod.dev/)
 * Tests checking email using Gmail
 * Visual testing
+* Load testing with [artillery.io](https://artillery.io/)
 * Successfully integrating in to CI/CD pipelines using:
   * Azure DevOps
     * Note: Only the setup to successfully execute a pipeline in Azure DevOps can be viewed. The files are stored under `pipelines` under the root directory. 
@@ -71,6 +72,12 @@ $ npx playwright test <path_to_test_file>:<line_number_of_test>
 To execute a specific project, run:
 ```
 $ npx playwright test --project=<project_name>
+```
+
+## Load tests with Artillery
+To exeucte the load test, run:
+```
+$ npx artillery run tests/artillery.spec.ts
 ```
 
 ## Email tests
